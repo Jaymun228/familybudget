@@ -27,11 +27,15 @@ async def main() -> None:
         Application.builder()
         .token(settings.bot.token)
         .rate_limiter(AIORateLimiter())
+<<<<<<< HEAD
         .post_init(
             lambda application: application.bot_data.update(
                 {"session_factory": session_factory, "settings": settings}
             )
         )
+=======
+        .post_init(lambda application: application.bot_data.update({"session_factory": session_factory}))
+>>>>>>> origin/main
         .build()
     )
 

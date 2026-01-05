@@ -14,9 +14,18 @@ class Subcategory(Base):
     name = Column(String(128), nullable=False)
     sort_order = Column(Integer, default=0, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
+<<<<<<< HEAD
+    created_at = Column(DateTime(timezone=True), default=dt.datetime.utcnow, nullable=False)
+    updated_at = Column(
+        DateTime(timezone=True),
+        default=dt.datetime.utcnow,
+        onupdate=dt.datetime.utcnow,
+        nullable=False,
+=======
     created_at = Column(DateTime, default=dt.datetime.utcnow, nullable=False)
     updated_at = Column(
         DateTime, default=dt.datetime.utcnow, onupdate=dt.datetime.utcnow, nullable=False
+>>>>>>> origin/main
     )
 
     category = relationship("Category", back_populates="subcategories")

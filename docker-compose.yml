@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: budget
+      POSTGRES_PASSWORD: budget
+      POSTGRES_DB: budget
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  bot:
+    build: .
+    command: ["python", "-m", "app.bot"]
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+
+volumes:
+  db_data:
